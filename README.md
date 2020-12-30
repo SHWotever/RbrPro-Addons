@@ -4,6 +4,6 @@ Simple NGP telemetry UDP forwarder, data will be sent to 127.0.0.1/6776 (Dafault
 
 ## How to install ?
 
-Download the release and copy Simhub.TelemetryForwarder.dll to the Addons folder of RBRPro.
+Download the [latest release](https://github.com/SHWotever/RbrPro.Simhub.TelemetryForwarderAddon/releases) and copy Simhub.TelemetryForwarder.dll to the Addons folder of RBRPro.
 
 Have fun !
