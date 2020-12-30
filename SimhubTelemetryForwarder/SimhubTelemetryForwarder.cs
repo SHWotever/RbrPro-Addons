@@ -1,43 +1,51 @@
 ﻿using RBRPro.Api;
 using System;
+using System.Net.Sockets;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using TGD.Rbr.Telemetry.Data;
 
-namespace RBRProTestAddOn
+namespace Simhub.TelemetryForwarder
 {
     /// <summary>
     /// The TestAddon
     /// A RBRPro Addon is a class implementing the IRbrProAddOn interface.
     /// Optionally, the Addon can receive telemetry by implementing the ITelemetryClient interface
     /// </summary>
-    public class TestAddon : IRbrProAddOn
+    public class SimhubTelemetryForwarder : IRbrProAddOn
     {
         // Maybe in future these properties will be replaced by class attributes
         #region ABOUT
-        public string Name { get => "Test Add-On"; }
-        public string Description { get => "This is a Test Add-On"; }
-        public string Author { get => "TGD"; }
+        public string Name { get => "simhub UDP forwarder"; }
+        public string Description { get => "forwards NGP telemetry data to another UDP port"; }
+        public string Author { get => "Wotever"; }
 
         // An optional icon is provided to the manager, just to decorate the tab item a bit...
-        public Image Icon => new Image { Source = new BitmapImage(new Uri($"pack://application:,,,/TestAddOn;component/icon.png", UriKind.Absolute)) };
+        public Image Icon => new Image { Source = new BitmapImage(new Uri($"pack://application:,,,/Simhub.TelemetryForwarder;component/icon.png", UriKind.Absolute)) };
 
         // This property tells the manager if the addon can be detached in a separate window or not
         public bool IsDetachable { get => false; }
+        public UdpClient UdpClient { get; }
 
         #endregion
 
         // The interface used to interact with the manager
         public IRbrPro _interactor;
 
-        // The viewmodel class
-        Model _model;
 
-        public TestAddon()
+
+        public SimhubTelemetryForwarder()
         {
-            _model = new Model(this);
-            _model.CarSpeed = 1;    // Just to test the if the data binding works... and of course it does 
+            try
+            {
+                this.UdpClient = new UdpClient("127.0.0.1", 6776);
+            }
+            catch
+            {
+
+            }
         }
 
         /// <summary>
@@ -53,7 +61,28 @@ namespace RBRProTestAddOn
 
         private void _interactor_DataReceived(object sender, TelemetryData data)
         {
-            _model.CarSpeed = data.car.speed;
+            try
+            {
+                byte[] byteData = ConvertPacketToByteArray(data);
+                UdpClient.Send(byteData, byteData.Length);
+            }
+            catch
+            {
+
+            }
+        }
+
+        public static byte[] ConvertPacketToByteArray<T>(T packet)
+        {
+            int size = Marshal.SizeOf(packet);
+            byte[] arr = new byte[size];
+            IntPtr ptr = Marshal.AllocHGlobal(size);
+
+            Marshal.StructureToPtr(packet, ptr, true);
+            Marshal.Copy(ptr, arr, 0, size);
+            Marshal.FreeHGlobal(ptr);
+
+            return arr;
         }
 
         /// <summary>
@@ -71,7 +100,7 @@ namespace RBRProTestAddOn
         /// <returns></returns>
         public System.Windows.Controls.Control GetGui()
         {
-            return new TestAddonGui(this, _interactor, _model);
+            return new SimhubTelemetryForwarderGui(this, _interactor);
         }
 
         public void Exit()

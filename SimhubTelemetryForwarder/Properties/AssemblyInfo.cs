@@ -2,14 +2,14 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-// Le informazioni generali relative a un assembly sono controllate dal seguente 
+// Le informazioni generali relative a un assembly sono controllate dal seguente
 // set di attributi. Modificare i valori di questi attributi per modificare le informazioni
 // associate a un assembly.
-[assembly: AssemblyTitle("TestAddOn")]
+[assembly: AssemblyTitle("Simhub.TelemetryForwarder")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RBRProTestPlugin")]
+[assembly: AssemblyCompany("SimHub")]
+[assembly: AssemblyProduct("Simhub.TelemetryForwarder")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

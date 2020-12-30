@@ -1,14 +1,14 @@
-﻿<UserControl x:Class="RBRProTestAddOn.TestAddonGui"
+﻿<UserControl x:Class="Simhub.TelemetryForwarder.SimhubTelemetryForwarderGui"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:RBRProTestAddOn"
+             xmlns:local="clr-namespace:Simhub.TelemetryForwarder"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <!-- The following button has a Tag and a ToolTip. They will be translated by the TGD.Localization engine -->
-        <Button Content="Button" HorizontalAlignment="Left" Margin="26,64,0,0" VerticalAlignment="Top" Width="228" Click="Button_Click" Tag="Test.HelloWorld" ToolTip="Test.HelloWorld" Height="29"/>
-        <Label Content="{Binding CarSpeed}" FontSize="22" HorizontalAlignment="Left" Margin="26,10,0,0" VerticalAlignment="Top" Width="228"/>
+        
+        <Label Content="Simple NGP UDP forwarder : data will be forwarded to 6776" FontSize="15" HorizontalAlignment="Left" Margin="26,10,0,0" VerticalAlignment="Top" />
     </Grid>
 </UserControl>
