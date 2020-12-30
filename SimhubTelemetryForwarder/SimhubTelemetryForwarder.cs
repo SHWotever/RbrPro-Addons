@@ -17,7 +17,9 @@ namespace Simhub.TelemetryForwarder
     public class SimhubTelemetryForwarder : IRbrProAddOn
     {
         // Maybe in future these properties will be replaced by class attributes
+
         #region ABOUT
+
         public string Name { get => "simhub UDP forwarder"; }
         public string Description { get => "forwards NGP telemetry data to another UDP port"; }
         public string Author { get => "Wotever"; }
@@ -27,14 +29,13 @@ namespace Simhub.TelemetryForwarder
 
         // This property tells the manager if the addon can be detached in a separate window or not
         public bool IsDetachable { get => false; }
+
         public UdpClient UdpClient { get; }
 
-        #endregion
+        #endregion ABOUT
 
         // The interface used to interact with the manager
         public IRbrPro _interactor;
-
-
 
         public SimhubTelemetryForwarder()
         {
@@ -44,7 +45,6 @@ namespace Simhub.TelemetryForwarder
             }
             catch
             {
-
             }
         }
 
@@ -68,7 +68,6 @@ namespace Simhub.TelemetryForwarder
             }
             catch
             {
-
             }
         }
 
@@ -91,7 +90,6 @@ namespace Simhub.TelemetryForwarder
         /// <param name="rbrProInteractor"></param>
         public void Ready(IRbrPro rbrProInteractor)
         {
-
         }
 
         /// <summary>
@@ -100,7 +98,7 @@ namespace Simhub.TelemetryForwarder
         /// <returns></returns>
         public System.Windows.Controls.Control GetGui()
         {
-            return new SimhubTelemetryForwarderGui(this, _interactor);
+            return new SimhubTelemetryForwarderGui();
         }
 
         public void Exit()

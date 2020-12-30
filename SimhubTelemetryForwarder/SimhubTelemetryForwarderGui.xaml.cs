@@ -9,22 +9,9 @@ namespace Simhub.TelemetryForwarder
     /// </summary>
     public partial class SimhubTelemetryForwarderGui : UserControl
     {
-        IRbrPro _rbrPro = null;
-        
-        
-
-        public SimhubTelemetryForwarderGui(IRbrProAddOn addon, IRbrPro interactor)
+        public SimhubTelemetryForwarderGui()
         {
-            
-
             InitializeComponent();
-            
-        }
-
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            _rbrPro?.StartGame(false, false, false);
         }
     }
 }
