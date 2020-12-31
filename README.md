@@ -1,6 +1,6 @@
 # RbrPro.Simhub.TelemetryForwarderAddon
 
-Simple NGP telemetry UDP forwarder, data will be sent to 127.0.0.1/6776 (Dafault NGP telemetry port)
+Simple NGP telemetry UDP forwarder, data will be sent to 127.0.0.1/6776 (Default NGP telemetry port)
 
 ## How to install ?
 
